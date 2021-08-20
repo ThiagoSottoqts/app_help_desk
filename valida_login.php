@@ -26,7 +26,11 @@
 
     if($usuario_autenticado) {
         echo 'Usuário autenticado';
+        
         $_SESSION['autenticado'] = 'SIM';// logica para ir para outras paginas
+        $_SESSION['x'] = 'um';
+        $_SESSION['y'] = 'dois';
+        header('Location: home.php'); // direciona para home se o login for correto
     } else {
         $_SESSION['autenticado'] = 'Não';
         header('Location: index.php?login=erro');// essa função força o redirecionamento.
