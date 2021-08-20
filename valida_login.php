@@ -1,5 +1,9 @@
 <?php
 
+    session_start();
+
+    
+
     //variável que verifica se a autenticação foi realizada
     $usuario_autenticado = false; //
 
@@ -22,18 +26,11 @@
 
     if($usuario_autenticado) {
         echo 'Usuário autenticado';
+        $_SESSION['autenticado'] = 'SIM';// logica para ir para outras paginas
     } else {
+        $_SESSION['autenticado'] = 'Não';
         header('Location: index.php?login=erro');// essa função força o redirecionamento.
     }
-
-
-
-
-
-
-
-
-
 
 
     /* super global get com essa as informações de email e senha aparecem no browse - capturar dados do formulário de acesso
@@ -43,15 +40,15 @@
 
     echo $_GET['email'];
     echo '<br />';
-    echo $_GET['senha'];*/
+    echo $_GET['senha'];
 
     print_r($_POST);
 
-    echo '<br />';
+    echo '<br />';*/
 
-    echo $_POST['email'];
+    $_POST['email'];
     echo '<br />';
-    echo $_POST['senha'];
+    $_POST['senha'];
 
 
 ?>

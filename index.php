@@ -28,7 +28,7 @@
 
         <div class="card-login">
           <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-center">
               Login
             </div>
             <div class="card-body">
@@ -46,6 +46,17 @@
                      ?>
                           <div class="text-danger d-flex justify-content-center ">
                             Usuário ou senha inválidos
+                          </div>
+
+                     <?php } ?>
+                     
+                     <?php
+                    // essa função verifica se um determinado indice esta citado.
+                    if(isset($_GET['login']) && $_GET['login'] == 'erro2') {
+                     
+                     ?>
+                          <div class="text-danger d-flex justify-content-center ">
+                            Faça login antes de acessar as páginas protegidas
                           </div>
 
                      <?php } ?>     
