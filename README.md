@@ -5,4 +5,4 @@
 
 3 -  Autenticação do login e inserção no index da mensagem de erro ao usuário.
 
-4 - Protejer as paginas de acesso para que não seja acessadas sem autencicação do login de usuário.
+4 - Proteger as paginas de acesso para que não seja acessadas sem autencicação do login de usuário. 
