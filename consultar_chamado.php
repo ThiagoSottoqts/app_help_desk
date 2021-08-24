@@ -1,5 +1,26 @@
 <?php
   require_once "validador_acesso.php" // usamos o require once pois queremos um fatal error se o validador de acesso nao for executado corretamente
+  
+?>
+
+
+<?php
+
+  //chamados
+  $chamados = [];
+  //abrir o arquivo.hd
+  $arquivo = fopen('../../app_help_desk/arquivo.hd', 'r'); //para ler o arquivo 
+
+  // percorrer o arquivo registro ou linhas a serem recuperados
+  while(!feof($arquivo)) {
+    //linhas
+    $registro = fgets($arquivo);
+    $chamados[] = $registro;
+  }
+
+  //fechar o arquivo aberto
+  fclose($arquivo);
+  
 ?>
 
 <html>
@@ -42,25 +63,37 @@
             </div>
             
             <div class="card-body">
+
+            <?php foreach($chamados as $chamado) {  ?>
+
+              <?php 
+              $chamado_dados = explode('#', $chamado);
+
               
+              if($_SESSION['perfil_id'] == 2) {
+                //só vamos exibir o chamado, se ele foi criado pelo usuário
+                if($_SESSION['id'] != $chamado_dados[0]) {
+                  continue;
+                }
+              }
+              
+              if(count($chamado_dados) < 3){
+                continue;
+              }
+
+            ?>
+
+              <?php $chamado.'<br />'; ?>          
               <div class="card mb-3 bg-light">
                 <div class="card-body">
-                  <h5 class="card-title">Título do chamado...</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Categoria</h6>
-                  <p class="card-text">Descrição do chamado...</p>
+                  <h5 class="card-title"><?php print_r($chamado_dados[1])?></h5>
+                  <h6 class="card-subtitle mb-2 text-muted"><?php print_r($chamado_dados[2])?></h6>
+                  <p class="card-text"><?php print_r($chamado_dados[3])?></p>
 
                 </div>
               </div>
-
-              <div class="card mb-3 bg-light">
-                <div class="card-body">
-                  <h5 class="card-title">Título do chamado...</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Categoria</h6>
-                  <p class="card-text">Descrição do chamado...</p>
-
-                </div>
-              </div>
-
+                <?php  } ?>
+              
               <div class="row mt-5">
                 <div class="col-6">
                   <a class="btn btn-lg btn-warning btn-block" 
